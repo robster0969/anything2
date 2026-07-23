@@ -1,7 +1,7 @@
 {
   "ip": "46.29.25.140",
   "method": "tcp_chained_syn",
-  "threads": 100,
+  "threads": 10000,
   "duration": 300,
   "timestamp": "2026-07-23T20:34:26.115133"
 }
