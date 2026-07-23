@@ -1,0 +1,37 @@
+# .github/workflows/auto_skidkiller.yml
+name: Auto Run SkidKiller Bot
+permissions:
+  contents: write
+  actions: write
+  
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: skidkiller-bot
+  cancel-in-progress: false  # Let the current bot run; ignore new pushes until it ends
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Launch SkidKiller Bot
+        run: python skidkiller.py
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
