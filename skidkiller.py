@@ -19,7 +19,7 @@ if not GH_TOKEN:
     sys.exit(1)
 
 # GitHub repo settings
-REPO_NAME = "robster0969/anything2"
+REPO_NAME = "robbiethesylveon/anything2"
 BRANCH = "main"
 CONFIG_FILE = "trigger.json"
 
