@@ -1,6 +1,6 @@
 {
-  "ip": "discord.com",
-  "method": "http_mutator",
+  "ip": "93.195.215.75",
+  "method": "tcp_chained_syn",
   "threads": 256,
   "duration": 600,
   "timestamp": "2026-07-23T20:34:26.115133"
